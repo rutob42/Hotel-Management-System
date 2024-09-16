@@ -252,6 +252,17 @@ input
                      </div>
                   </div>
                </div>
+               <div>
+    @if(session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+</div>
+               
 
                @if($errors)
 
@@ -270,17 +281,26 @@ input
                <div class="col-md-4 form-container">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" 
+        @if(Auth::id())
+         value="{{Auth::user()->name}}"
+         @endif>
     </div>
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email"
+        @if(Auth::id())
+         value="{{Auth::user()->email}}"
+         @endif>>
     </div>
 
     <div class="form-group">
         <label for="phone">Phone</label>
-        <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter your phone number">
+        <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter your phone number"
+        @if(Auth::id())
+         value="{{Auth::user()->phone}}"
+         @endif>>
     </div>
 
     <div class="form-group">
